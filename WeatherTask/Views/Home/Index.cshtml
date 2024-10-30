@@ -1,0 +1,59 @@
+﻿@model WeatherModel
+@{
+    if (Model.City != null)
+        ViewData["Title"] = $"Weather in {Model.City}";
+    else
+        ViewData["Title"] = "Weather Search";
+}
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
+
+<div class="container">
+    <form asp-controller="Home" asp-action="GetWeather" method="get">
+        <label for="City">Enter city name: </label>
+        <input id="cityInput" type="text" asp-for="City" placeholder="City name"/>
+    </form>
+    @if (@Model.City != null)
+    {
+        <h3>Weather forecast for city @Model.City: </h3>
+        <div class="result">
+            <div class="flex-center">
+                <span>Min. Temperature: </span>
+                <span class="min-temperature">@($"{@Model.MinTemperature}°C")</span>
+            </div>
+            <div class="flex-center">
+                <span>Max. Temperature: </span>
+                <span class="max-temperature">@($"{@Model.MaxTemperature}°C")</span>
+            </div>
+            <div class="flex-center">
+                <span>Daily precipitation: </span>
+                <span class="precipitation @(Model.DailyPrecipitation != null ? "precipitation-yes" : "precipitation-no")">
+                    @(Model.DailyPrecipitation ?? "None")
+                </span>
+            </div>
+            <div class="flex-center">
+                <span>Nightly precipitation: </span>
+                <span class="precipitation @(Model.NightlyPrecipitation != null ? "precipitation-yes" : "precipitation-no")">
+                    @(Model.NightlyPrecipitation ?? "None")
+                </span>
+            </div>
+            <script>
+                window.onload = () => {
+                    let today = new Date().toISOString().split('T')[0]
+                    let last = localStorage.getItem('@Model.City')
+
+                    localStorage.setItem('last', '@Model.City')
+                    if ("@Model.DailyPrecipitation".length > 0 && last !== today) {
+                        localStorage.setItem('@Model.City', today)
+                        alert('Precepetation warning! Today may be @Model.DailyPrecipitation in @Model.City')
+                    }
+                }
+            </script>
+        </div>
+    }
+    else
+    {
+        <script>
+            document.getElementById('cityInput').value = localStorage.getItem('last')
+        </script>
+    }
+</div>

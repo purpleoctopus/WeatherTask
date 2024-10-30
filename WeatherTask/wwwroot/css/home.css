@@ -1,0 +1,58 @@
+﻿input {
+    width: 100%;
+    font-size: 14px;
+}
+
+.result {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap:5px;
+}
+
+    .result > div {
+        display: flex;
+        flex-direction: column;
+        width: 49%;
+    }
+
+.flex-center {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 25vh;
+}
+.min-temperature, .max-temperature {
+    text-align: center;
+    font-size: 36px;
+    font-family: Arial;
+    margin: auto;
+}
+    .flex-center .min-temperature {
+        color: #003366;
+        padding: 0.5rem;
+    }
+
+    .flex-center .max-temperature {
+        color: #663300;
+        padding: 0.5rem;
+    }
+
+.flex-center .precipitation {
+    font-size: 1.5rem;
+    color: #333;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin: auto;
+    font-family: Arial;
+}
+
+    .flex-center .precipitation-yes {
+        color: red;
+    }
+
+    .flex-center .precipitation-no {
+        color: green;
+    }

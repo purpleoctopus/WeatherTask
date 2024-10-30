@@ -1,0 +1,25 @@
+html {
+    font-size: 14px;
+    font-family: Bahnschrift;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+.logo-text{
+    text-decoration: none;
+    color: black;
+}
+header{
+    background-color: blue;
+    padding:16px 32px;
+    box-shadow:rgba(0,0,100,255) 0px 0px 0px 5px;
+}
+body {
+  margin: 0;
+}
+main {
+    padding: 30px 100px;
+}
